@@ -6,13 +6,11 @@
 
 	<form method="post">
 		<label for="username">Username</label>
-		<input type="text" name="username" value="{{username}}">
-        <span class="error">{{ errors.username_error }}</span>		
-
+		<input type="text" name="username" value="{{username}}">	
 		<label for="password">Password</label>
-		<input type="password" name="password" value="">
-        <span class="error">{{ errors.password_error }}</span>		
-		<input type="submit" value="Submit">
+		<input type="password" name="password" value="">		
+		<input type="submit" value="Submit"><br>
+        <span class="error">{{ error }}</span>		
 	</form>
 	
 {% endblock %}

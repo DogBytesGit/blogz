@@ -290,7 +290,13 @@ class LogoutHandler(BlogHandler):
 
     def get(self):
         self.logout_user()
-        self.redirect('/blog')
+        self.redirect('/bye')
+		
+class LoggedOutHandler(BlogHandler):
+	def get(self):
+		t = jinja_env.get_template("bye.html")
+		response = t.render()
+		self.response.out.write(response)		
 
 app = webapp2.WSGIApplication([
     ('/', IndexHandler),
@@ -300,7 +306,8 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/blog/<username:[a-zA-Z0-9_-]{3,20}>', BlogIndexHandler),
     ('/signup', SignupHandler),
     ('/login', LoginHandler),
-    ('/logout', LogoutHandler)
+    ('/logout', LogoutHandler),
+	('/bye', LoggedOutHandler)
 ], debug=True)
 
 # A list of paths that a user must be logged in to access
